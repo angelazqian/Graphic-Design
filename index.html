@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>:3</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="js/jeelizGlanceTracker.js"></script>
 </head>
 <body>
   <header>
@@ -12,5 +13,34 @@
     <h2>graphic design is my passion</h2>
     <p2>it really is quite incredible</p2>
   </header>
+
+  <canvas id='glanceTrackerCanvas'></canvas>
+
+  <div id="overlay" style="display: none;">
+    <h1>LOOK AT ME!!!!!</h1>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const header = document.querySelector('header');
+      const overlay = document.getElementById('overlay');
+
+      JEELIZGLANCETRACKER.init({
+        callbackTrack: function (isWatching) {
+          if (isWatching) {
+            console.log('watching');
+            overlay.style.display = "none";
+          } else {
+            console.log('not watching');
+            overlay.style.display = "flex";
+          }
+        },
+        isDisplayVideo: false,
+        canvasId: 'glanceTrackerCanvas',
+        sensibility: 0.25,
+        NNCPath: '/js/'
+      });
+    });
+  </script>
 </body>
 </html>
