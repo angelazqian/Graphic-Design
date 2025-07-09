@@ -8,10 +8,11 @@
   <script src="js/jeelizGlanceTracker.js"></script>
 </head>
 <body>
+  <div id="background"></div>
   <div id="overlay" style="display: none;">
     <h1>LOOK AT ME!!!!!</h1>
   </div>
-  
+
   <header>
     <h1>welcome to my website</h1>
     <h2>graphic design is my passion</h2>
@@ -35,11 +36,20 @@
             overlay.style.display = "flex";
           }
         },
+        callbackReady: function(error, spec){
+          if (error){
+            console.log('error auhgsdfsds', error);
+            JEELIZGLANCETRACKER.toggle_pause(true, true);
+            overlay.style.display = "none";
+            return;
+          }
+        },
         isDisplayVideo: false,
         canvasId: 'glanceTrackerCanvas',
         sensibility: 0.25,
         NNCPath: './js/'  //use relative path bc github pages is aeugh
       });
+      
     });
   </script>
 </body>
